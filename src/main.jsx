@@ -181,7 +181,7 @@ function Hero({ content }) {
           <p className="mb-6 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-paper/55">
             {content.hero.eyebrow}
           </p>
-          <h1 className="max-w-4xl font-display text-[clamp(3.2rem,4.4vw,5.6rem)] font-semibold leading-[0.88] tracking-tighter2">
+          <h1 className="max-w-4xl font-display text-[clamp(3.2rem,4.4vw,5.6rem)] font-semibold leading-[0.88] tracking-[-0.025em]">
             {content.hero.titleLines.map((line, index) => <span key={`${line}-${index}`} className={`block ${index === content.hero.titleLines.length - 1 ? "text-rust" : ""}`}>{line}</span>)}
           </h1>
           <p className="mt-7 max-w-xl text-base leading-relaxed text-paper/68 sm:text-lg">
