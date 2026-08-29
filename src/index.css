@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: 21 20 15;
+  --color-ink-soft: 33 31 24;
+  --color-paper: 244 239 228;
+  --color-paper-deep: 231 223 208;
+  --color-rust: 176 71 42;
+  --color-rust-dark: 136 53 31;
+  --color-moss: 74 90 66;
+  color: #f4efe4;
+  background: #15140f;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #15140f;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #15140f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgb(var(--color-rust));
+  color: rgb(var(--color-paper));
+}
+
+img {
+  display: block;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-header {
+  background-color: rgb(var(--color-ink) / 0.98);
+}
+
+.nav-link,
+.footer-link {
+  color: rgba(244, 239, 228, 0.62);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.nav-link:hover,
+.footer-link:hover {
+  color: rgb(var(--color-rust));
+}
+
+.stat-block {
+  min-height: 170px;
+  border-bottom: 1px solid rgb(var(--color-ink) / 0.2);
+  padding: 1.25rem 1rem 1.5rem 0;
+}
+
+.stat-block + .stat-block {
+  border-left: 1px solid rgb(var(--color-ink) / 0.2);
+  padding-left: 1rem;
+}
+
+.pillar-card {
+  isolation: isolate;
+}
+
+.pillar-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(var(--color-ink) / 0.18);
+  content: "";
+  pointer-events: none;
+}
+
+.image-fallback {
+  display: flex;
+  min-height: 240px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgb(var(--color-ink-soft));
+  color: rgb(var(--color-paper) / 0.58);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hero-visual::before {
+  position: absolute;
+  bottom: 2.5rem;
+  left: -1rem;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgb(var(--color-rust));
+  content: "";
+}
+
+@media (max-width: 767px) {
+  .stat-block + .stat-block {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .hero-visual::before {
+    bottom: 2rem;
+    left: -0.4rem;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
