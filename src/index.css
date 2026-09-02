@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -14,7 +14,7 @@
   --color-steel: 58 64 75;
   color: #f2f1ee;
   background: #111318;
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-family: Manrope, "Helvetica Neue", Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -28,6 +28,24 @@ body {
   min-width: 320px;
   margin: 0;
   background: #111318;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 50;
+  transform: translateY(-180%);
+  background: rgb(var(--color-paper));
+  padding: 0.75rem 1rem;
+  color: rgb(var(--color-ink));
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 * {
@@ -51,6 +69,27 @@ a {
 .site-header {
   background-color: rgb(var(--color-ink) / 0.97);
   backdrop-filter: none;
+}
+
+.hero-section::before {
+  position: absolute;
+  inset: 76px auto 0 0;
+  width: 3px;
+  background: rgb(var(--color-accent));
+  content: "";
+}
+
+.hero-media {
+  background: rgb(var(--color-ink-soft));
+}
+
+.hero-media-shade {
+  background: rgb(var(--color-ink) / 0.12);
+  box-shadow: inset 48px 0 64px rgb(var(--color-ink) / 0.38);
+}
+
+.hero-facts {
+  box-shadow: 0 24px 64px rgb(var(--color-ink) / 0.3);
 }
 
 .nav-link,
@@ -86,11 +125,12 @@ a {
 .product-card {
   position: relative;
   isolation: isolate;
-  transition: border-color 220ms ease, background-color 220ms ease;
+  transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .product-card:hover {
   border-color: rgb(var(--color-accent));
+  box-shadow: 0 24px 54px rgb(var(--color-ink) / 0.12);
 }
 
 .product-card::before {
@@ -144,6 +184,10 @@ a {
 }
 
 @media (max-width: 767px) {
+  .hero-media-shade {
+    box-shadow: inset 0 -56px 72px rgb(var(--color-ink) / 0.32);
+  }
+
   .stat-block + .stat-block {
     border-left: 0;
     padding-left: 0;

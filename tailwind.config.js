@@ -14,7 +14,7 @@ export default {
       },
       fontFamily: {
         display: ["Archivo", "Arial Narrow", "Helvetica Neue", "sans-serif"],
-        sans: ["Inter", "Helvetica Neue", "Arial", "sans-serif"],
+        sans: ["Manrope", "Helvetica Neue", "Arial", "sans-serif"],
       },
       letterSpacing: {
         tighter2: "-0.045em",

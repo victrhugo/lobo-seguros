@@ -42,8 +42,8 @@ export const defaultSiteContent = {
     primaryCta: "Pedir cotação",
     secondaryCta: "Ver os seguros",
     message: "Olá! Vim pelo site e quero uma cotação de seguro.",
-    image: "/logo-lobo-seguros-light.png",
-    imageAlt: "Logotipo Lobo Corretora Seguros",
+    image: "/hero-auto-lobo.jpg",
+    imageAlt: "SUV grafite estacionado em uma avenida urbana ao entardecer",
   },
   insurers: {
     title: "Cotamos com as maiores.",

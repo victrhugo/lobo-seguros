@@ -21,11 +21,12 @@ import {
   ShieldCheck,
   WhatsappLogo,
 } from "@phosphor-icons/react";
-import AdminPage from "./Admin";
 import "./index.css";
 import { hexToRgbChannels, useSiteContent } from "./siteContent";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const AdminPage = React.lazy(() => import("./Admin"));
 
 const whatsappLink = (base, message) =>
   message ? `${base}?text=${encodeURIComponent(message)}` : base;
@@ -164,20 +165,22 @@ function Header({ content }) {
 }
 
 function Hero({ content }) {
+  const reduce = useReducedMotion();
+
   return (
-    <section id="topo" className="relative bg-ink pt-[76px] text-paper">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 pb-16 pt-16 sm:pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16 lg:px-10 lg:pb-20 lg:pt-24">
+    <section id="topo" className="hero-section relative overflow-hidden bg-ink pt-[76px] text-paper">
+      <div className="mx-auto grid min-h-[calc(100svh-76px)] max-w-[1600px] grid-cols-1 lg:grid-cols-2">
         <motion.div
-          className="max-w-3xl"
-          initial={{ opacity: 0, y: 20 }}
+          className="relative z-10 flex flex-col justify-center px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-12 xl:pl-20"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: revealEase }}
         >
           <p className="mb-7 flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-paper/55">
-            <span className="h-2 w-2 shrink-0 bg-accent" aria-hidden="true" />
+            <span className="h-px w-8 shrink-0 bg-accent" aria-hidden="true" />
             {content.hero.eyebrow}
           </p>
-          <h1 className="font-display text-[clamp(2.7rem,5vw,4.9rem)] font-extrabold leading-[0.92] tracking-[-0.035em]">
+          <h1 className="text-balance font-display text-[clamp(3.1rem,4.6vw,5.4rem)] font-extrabold leading-[0.88] tracking-[-0.055em]">
             {content.hero.titleLines.map((line, index) => (
               <span
                 key={`${line}-${index}`}
@@ -187,7 +190,7 @@ function Hero({ content }) {
               </span>
             ))}
           </h1>
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-paper/70 sm:text-lg">
+          <p className="mt-8 max-w-[36rem] text-pretty text-base leading-relaxed text-paper/68 sm:text-lg">
             {content.hero.description}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -203,22 +206,39 @@ function Hero({ content }) {
           </div>
         </motion.div>
 
-        <Reveal delay={0.15} amount={0.1}>
-          <dl className="grid grid-cols-2 gap-px border border-paper/15 bg-paper/15 sm:grid-cols-2">
-            <div className="bg-ink p-5 sm:p-6">
-              <dt className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper/45">Telefone</dt>
-              <dd className="mt-2 font-display text-xl font-bold tracking-tight">{content.contact.whatsappLabel}</dd>
-            </div>
-            <div className="bg-ink p-5 sm:p-6">
-              <dt className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper/45">Atendimento</dt>
-              <dd className="mt-2 font-display text-xl font-bold tracking-tight">8h30 às 18h</dd>
-            </div>
-            <div className="col-span-2 bg-ink p-5 sm:p-6">
-              <dt className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-paper/45">Escritório</dt>
-              <dd className="mt-2 text-sm leading-relaxed text-paper/75">{content.contact.address}</dd>
-            </div>
-          </dl>
-        </Reveal>
+        <motion.div
+          className="hero-media relative min-h-[440px] overflow-hidden lg:min-h-full"
+          initial={reduce ? false : { opacity: 0, scale: 1.025 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.15, delay: 0.08, ease: revealEase }}
+        >
+          <img
+            src={content.hero.image}
+            alt={content.hero.imageAlt}
+            className="absolute inset-0 h-full w-full object-cover"
+            width="1536"
+            height="1024"
+            fetchpriority="high"
+            data-placeholder="true"
+          />
+          <div className="hero-media-shade absolute inset-0" aria-hidden="true" />
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-5 sm:p-8 lg:p-10">
+            <dl className="hero-facts grid grid-cols-2 border border-paper/20 bg-ink/90 sm:grid-cols-3">
+              <div className="p-4 sm:p-5">
+                <dt className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/45">Experiência</dt>
+                <dd className="mt-2 font-display text-2xl font-bold tracking-tight">{content.about.years} anos</dd>
+              </div>
+              <div className="border-l border-paper/15 p-4 sm:p-5">
+                <dt className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/45">Atendimento</dt>
+                <dd className="mt-2 font-display text-2xl font-bold tracking-tight">8h30–18h</dd>
+              </div>
+              <div className="col-span-2 border-t border-paper/15 p-4 sm:col-span-1 sm:border-l sm:border-t-0 sm:p-5">
+                <dt className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/45">Base local</dt>
+                <dd className="mt-2 text-sm font-semibold leading-snug text-paper/85">Centro de Taubaté</dd>
+              </div>
+            </dl>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -255,6 +275,7 @@ function Insurers({ content }) {
 
 function Products({ content }) {
   const { items } = content.products;
+  const reduce = useReducedMotion();
 
   return (
     <section id="seguros" className="scroll-mt-20 bg-paper text-ink" aria-labelledby="seguros-title">
@@ -277,10 +298,12 @@ function Products({ content }) {
                 delay={Math.min(index, 3) * 0.07}
                 className={featured ? "md:col-span-2 lg:col-span-1 lg:row-span-2" : ""}
               >
-                <article
+                <motion.article
                   className={`product-card flex h-full flex-col justify-between border p-6 sm:p-7 ${
                     featured ? "border-ink bg-ink text-paper" : "border-ink/18 bg-paperDeep/45"
                   }`}
+                  whileHover={reduce ? undefined : { y: -5 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
                 >
                   <div>
                     <div className="flex items-start justify-between">
@@ -339,7 +362,7 @@ function Products({ content }) {
                       <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
                     </motion.a>
                   </div>
-                </article>
+                </motion.article>
               </Reveal>
             );
           })}
@@ -607,6 +630,9 @@ function StickyWhatsApp({ content }) {
 
 function App() {
   const content = useSiteContent();
+  const hasPublishedTestimonials = content.testimonials.items.some(
+    (item) => item.author.trim().toLowerCase() !== "texto provisório",
+  );
 
   useEffect(() => {
     document.title = content.seo.title;
@@ -622,14 +648,17 @@ function App() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-ink" style={themeStyle}>
+      <a className="skip-link" href="#conteudo">
+        Pular para o conteúdo
+      </a>
       <Header content={content} />
-      <main>
+      <main id="conteudo">
         <Hero content={content} />
         <Insurers content={content} />
         <Products content={content} />
         <About content={content} />
         <Differences content={content} />
-        <Testimonials content={content} />
+        {hasPublishedTestimonials && <Testimonials content={content} />}
         <FinalCta content={content} />
       </main>
       <Footer content={content} />
@@ -641,5 +670,13 @@ function App() {
 const isAdminRoute = window.location.pathname.replace(/\/+$/, "") === "/admin";
 
 createRoot(document.getElementById("root")).render(
-  <React.StrictMode>{isAdminRoute ? <AdminPage /> : <App />}</React.StrictMode>,
+  <React.StrictMode>
+    {isAdminRoute ? (
+      <React.Suspense fallback={<div className="min-h-screen bg-ink" />}>
+        <AdminPage />
+      </React.Suspense>
+    ) : (
+      <App />
+    )}
+  </React.StrictMode>,
 );
