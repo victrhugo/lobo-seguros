@@ -168,46 +168,9 @@ function Hero({ content }) {
   const reduce = useReducedMotion();
 
   return (
-    <section id="topo" className="hero-section relative overflow-hidden bg-ink pt-[76px] text-paper">
-      <div className="mx-auto grid min-h-[calc(100svh-76px)] max-w-[1600px] grid-cols-1 lg:grid-cols-2">
-        <motion.div
-          className="relative z-10 flex flex-col justify-center px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-12 xl:pl-20"
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: revealEase }}
-        >
-          <p className="mb-7 flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-paper/55">
-            <span className="h-px w-8 shrink-0 bg-accent" aria-hidden="true" />
-            {content.hero.eyebrow}
-          </p>
-          <h1 className="text-balance font-display text-[clamp(3.1rem,4.6vw,5.4rem)] font-extrabold leading-[0.88] tracking-[-0.055em]">
-            {content.hero.titleLines.map((line, index) => (
-              <span
-                key={`${line}-${index}`}
-                className={`block ${index === content.hero.titleLines.length - 1 ? "text-accent" : ""}`}
-              >
-                {line}
-              </span>
-            ))}
-          </h1>
-          <p className="mt-8 max-w-[36rem] text-pretty text-base leading-relaxed text-paper/68 sm:text-lg">
-            {content.hero.description}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <ArrowLink href={whatsappLink(content.contact.whatsapp, content.hero.message)}>
-              {content.hero.primaryCta}
-            </ArrowLink>
-            <a
-              href="#seguros"
-              className="inline-flex min-h-12 items-center gap-2 px-1 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-paper/70 transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              {content.hero.secondaryCta} <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
-            </a>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="hero-media relative min-h-[440px] overflow-hidden lg:min-h-full"
+    <section id="topo" className="hero-section relative min-h-[100svh] overflow-hidden bg-ink pt-[76px] text-paper">
+      <motion.div
+          className="hero-cover absolute inset-x-0 bottom-0 top-[76px] overflow-hidden"
           initial={reduce ? false : { opacity: 0, scale: 1.025 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.15, delay: 0.08, ease: revealEase }}
@@ -215,28 +178,40 @@ function Hero({ content }) {
           <img
             src={content.hero.image}
             alt={content.hero.imageAlt}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-[62%_center] lg:object-center"
             width="1536"
             height="1024"
             fetchpriority="high"
             data-placeholder="true"
           />
-          <div className="hero-media-shade absolute inset-0" aria-hidden="true" />
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-5 sm:p-8 lg:p-10">
-            <dl className="hero-facts grid grid-cols-2 border border-paper/20 bg-ink/90 sm:grid-cols-3">
-              <div className="p-4 sm:p-5">
-                <dt className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/45">Experiência</dt>
-                <dd className="mt-2 font-display text-2xl font-bold tracking-tight">{content.about.years} anos</dd>
-              </div>
-              <div className="border-l border-paper/15 p-4 sm:p-5">
-                <dt className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/45">Atendimento</dt>
-                <dd className="mt-2 font-display text-2xl font-bold tracking-tight">8h30–18h</dd>
-              </div>
-              <div className="col-span-2 border-t border-paper/15 p-4 sm:col-span-1 sm:border-l sm:border-t-0 sm:p-5">
-                <dt className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-paper/45">Base local</dt>
-                <dd className="mt-2 text-sm font-semibold leading-snug text-paper/85">Centro de Taubaté</dd>
-              </div>
-            </dl>
+          <div className="hero-cover-tint absolute inset-0" aria-hidden="true" />
+      </motion.div>
+
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-76px)] max-w-[1600px] items-end px-4 pb-4 pt-24 sm:px-8 sm:pb-8 lg:px-10 lg:pb-10 xl:px-20">
+        <motion.div
+          className="hero-copy w-full max-w-[43rem] px-6 pb-20 pt-6 sm:p-8 lg:p-10"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.18, ease: revealEase }}
+        >
+          <p className="mb-5 flex items-center gap-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-paper/65">
+            <span className="h-px w-8 shrink-0 bg-accent" aria-hidden="true" />
+            {content.hero.eyebrow}
+          </p>
+          <h1 className="text-balance font-display text-[clamp(3.1rem,7vw,5.8rem)] font-extrabold leading-[0.87] tracking-[-0.055em]">
+            {content.hero.titleLines.map((line, index) => (
+              <span key={`${line}-${index}`} className={`block ${index === 1 ? "text-accent" : ""}`}>
+                {line}
+              </span>
+            ))}
+          </h1>
+          <p className="mt-5 max-w-[31rem] text-pretty text-sm leading-relaxed text-paper/78 sm:text-base">
+            {content.hero.description}
+          </p>
+          <div className="mt-7 hidden sm:block">
+            <ArrowLink href={whatsappLink(content.contact.whatsapp, content.hero.message)}>
+              {content.hero.primaryCta}
+            </ArrowLink>
           </div>
         </motion.div>
       </div>

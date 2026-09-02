@@ -35,11 +35,11 @@ export const defaultSiteContent = {
     { label: "Contato", href: "#contato" },
   ],
   hero: {
-    eyebrow: "TAUBATÉ-SP · 20 ANOS DE MERCADO",
-    titleLines: ["Seguro certo,", "escolhido entre as", "maiores seguradoras."],
+    eyebrow: "SEGURO AUTO · TAUBATÉ-SP · 20 ANOS",
+    titleLines: ["Seu carro protegido.", "Você tranquilo."],
     description:
-      "Cotamos o seu seguro em várias seguradoras, explicamos cobertura por cobertura e acompanhamos você antes, durante e depois do sinistro.",
-    primaryCta: "Pedir cotação",
+      "Comparamos as principais seguradoras e encontramos a cobertura certa para você.",
+    primaryCta: "Cotar meu seguro",
     secondaryCta: "Ver os seguros",
     message: "Olá! Vim pelo site e quero uma cotação de seguro.",
     image: "/hero-auto-lobo.jpg",
