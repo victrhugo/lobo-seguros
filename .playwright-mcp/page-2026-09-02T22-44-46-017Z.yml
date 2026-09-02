@@ -1,0 +1,229 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - link "LOBO CORRETORA® SEGUROS, voltar ao início" [ref=f1e6] [cursor=pointer]:
+        - /url: "#topo"
+        - img "LOBO CORRETORA® SEGUROS" [ref=f1e7]
+      - navigation "Navegação principal" [ref=f1e8]:
+        - link "Seguros" [ref=f1e9] [cursor=pointer]:
+          - /url: "#seguros"
+        - link "Seguradoras" [ref=f1e10] [cursor=pointer]:
+          - /url: "#seguradoras"
+        - link "Empresa" [ref=f1e11] [cursor=pointer]:
+          - /url: "#empresa"
+        - link "Contato" [ref=f1e12] [cursor=pointer]:
+          - /url: "#contato"
+      - link "Pedir cotação" [ref=f1e13] [cursor=pointer]:
+        - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro.
+  - main [ref=f1e17]:
+    - generic [ref=f1e19]:
+      - generic [ref=f1e20]:
+        - paragraph [ref=f1e21]: TAUBATÉ-SP · 20 ANOS DE MERCADO
+        - heading "Seguro certo, escolhido entre as maiores seguradoras." [level=1] [ref=f1e23]:
+          - generic [ref=f1e24]: Seguro certo,
+          - generic [ref=f1e25]: escolhido entre as
+          - generic [ref=f1e26]: maiores seguradoras.
+        - paragraph [ref=f1e27]: Cotamos o seu seguro em várias seguradoras, explicamos cobertura por cobertura e acompanhamos você antes, durante e depois do sinistro.
+        - generic [ref=f1e28]:
+          - link "Pedir cotação" [ref=f1e29] [cursor=pointer]:
+            - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro.
+          - link "Ver os seguros" [ref=f1e33] [cursor=pointer]:
+            - /url: "#seguros"
+      - generic [ref=f1e37]:
+        - generic [ref=f1e38]:
+          - term [ref=f1e39]: Telefone
+          - definition [ref=f1e40]: (12) 98179-7300
+        - generic [ref=f1e41]:
+          - term [ref=f1e42]: Atendimento
+          - definition [ref=f1e43]: 8h30 às 18h
+        - generic [ref=f1e44]:
+          - term [ref=f1e45]: Escritório
+          - definition [ref=f1e46]: Rua Jacques Felix, 456 — Centro, Taubaté-SP
+    - generic [ref=f1e48]:
+      - generic [ref=f1e49]:
+        - heading "Cotamos com as maiores." [level=2] [ref=f1e50]
+        - paragraph [ref=f1e51]: Pesquisa entre seguradoras do mercado nacional e internacional antes de indicar a apólice.
+      - generic [ref=f1e52]:
+        - generic [ref=f1e53]: Porto Seguro
+        - generic [ref=f1e54]: Mapfre
+        - generic [ref=f1e55]: Bradesco Seguros
+        - generic [ref=f1e56]: SulAmérica
+        - generic [ref=f1e57]: Itaú Seguros
+        - generic [ref=f1e58]: Azul Seguros
+        - generic [ref=f1e59]: Chubb
+      - paragraph [ref=f1e60]: Também trabalhamos com consórcio Porto e Carro Fácil.
+    - region [ref=f1e61]:
+      - generic [ref=f1e62]:
+        - generic [ref=f1e63]:
+          - heading "Seis frentes de proteção." [level=2] [ref=f1e64]
+          - paragraph [ref=f1e65]: Assessoria personalizada na contratação, com assistência 24 horas durante toda a vigência da apólice.
+        - generic [ref=f1e66]:
+          - article [ref=f1e68]:
+            - generic [ref=f1e69]:
+              - generic [ref=f1e70]: "01"
+              - heading "Seguro Auto" [level=3] [ref=f1e74]
+              - paragraph [ref=f1e75]: "Feito para quem quer segurança e comodidade no dia a dia. Não fechamos com a primeira seguradora: buscamos entre todas a que melhor atende o seu perfil e o seu carro."
+              - list [ref=f1e76]:
+                - listitem [ref=f1e77]: Cobertura compreensiva
+                - listitem [ref=f1e80]: Carro reserva
+                - listitem [ref=f1e83]: Assistência 24h
+                - listitem [ref=f1e86]: Terceiros
+            - link "Cotar agora" [ref=f1e90] [cursor=pointer]:
+              - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro%20auto.
+          - article [ref=f1e94]:
+            - generic [ref=f1e95]:
+              - generic [ref=f1e96]: "02"
+              - heading "Seguro Residencial" [level=3] [ref=f1e100]
+              - paragraph [ref=f1e101]: Para proprietários e inquilinos, em residência habitual ou de veraneio. Coberturas diferenciadas, sem burocracia e com custo baixo.
+              - list [ref=f1e102]:
+                - listitem [ref=f1e103]: Incêndio e raio
+                - listitem [ref=f1e106]: Roubo e furto
+                - listitem [ref=f1e109]: Danos elétricos
+                - listitem [ref=f1e112]: Assistência residencial
+            - link "Cotar agora" [ref=f1e116] [cursor=pointer]:
+              - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro%20residencial.
+          - article [ref=f1e120]:
+            - generic [ref=f1e121]:
+              - generic [ref=f1e122]: "03"
+              - heading "Seguro Saúde" [level=3] [ref=f1e126]
+              - paragraph [ref=f1e127]: Suporte na cotação e na contratação do plano, individual, familiar ou empresarial. Comparamos rede credenciada, carência e reajuste antes de indicar.
+              - list [ref=f1e128]:
+                - listitem [ref=f1e129]: Individual
+                - listitem [ref=f1e132]: Familiar
+                - listitem [ref=f1e135]: Empresarial
+                - listitem [ref=f1e138]: Rede credenciada
+            - link "Cotar agora" [ref=f1e142] [cursor=pointer]:
+              - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro%20sa%C3%BAde.
+          - article [ref=f1e146]:
+            - generic [ref=f1e147]:
+              - generic [ref=f1e148]: "04"
+              - heading "Seguro Empresarial" [level=3] [ref=f1e152]
+              - paragraph [ref=f1e153]: Proteção ao patrimônio da empresa, independentemente do porte ou do segmento, para que um imprevisto não pare a operação.
+              - list [ref=f1e154]:
+                - listitem [ref=f1e155]: Incêndio e explosão
+                - listitem [ref=f1e158]: Vendaval
+                - listitem [ref=f1e161]: Roubo qualificado
+                - listitem [ref=f1e164]: Danos elétricos
+            - link "Cotar agora" [ref=f1e168] [cursor=pointer]:
+              - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro%20empresarial.
+          - article [ref=f1e172]:
+            - generic [ref=f1e173]:
+              - generic [ref=f1e174]: "05"
+              - heading "Máquinas e Equipamentos" [level=3] [ref=f1e178]
+              - paragraph [ref=f1e179]: "Cobertura conforme o uso do maquinário: obras, setor agrícola, parques industriais e operação próxima a rios, lagos e represas, em todo o território nacional."
+              - list [ref=f1e180]:
+                - listitem [ref=f1e181]: Obras
+                - listitem [ref=f1e184]: Agrícola
+                - listitem [ref=f1e187]: Parque industrial
+                - listitem [ref=f1e190]: Território nacional
+            - link "Cotar agora" [ref=f1e194] [cursor=pointer]:
+              - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro%20de%20m%C3%A1quinas%20e%20equipamentos.
+          - article [ref=f1e198]:
+            - generic [ref=f1e199]:
+              - generic [ref=f1e200]: "06"
+              - heading "Fiança Locatícia" [level=3] [ref=f1e204]
+              - paragraph [ref=f1e205]: A garantia de aluguel que as imobiliárias mais aceitam. Retorno mais rápido e confiável para o proprietário, menos burocracia para o inquilino.
+              - list [ref=f1e206]:
+                - listitem [ref=f1e207]: Sem fiador
+                - listitem [ref=f1e210]: Aceito por imobiliárias
+                - listitem [ref=f1e213]: Aluguel e encargos
+                - listitem [ref=f1e216]: Contratação rápida
+            - link "Cotar agora" [ref=f1e220] [cursor=pointer]:
+              - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro%20fian%C3%A7a%20locat%C3%ADcia.
+    - generic [ref=f1e224]:
+      - generic [ref=f1e228]:
+        - paragraph [ref=f1e229]: "1"
+        - paragraph [ref=f1e230]: anos cotando, explicando e acompanhando seguro de perto.
+      - generic [ref=f1e231]:
+        - generic [ref=f1e232]:
+          - heading "Atendimento que começa antes da apólice." [level=2] [ref=f1e233]
+          - paragraph [ref=f1e234]: Atendimento personalizado, feito para a realidade e a necessidade de cada cliente. Confiança e clareza nas informações, pesquisa entre as maiores seguradoras do mercado nacional e internacional, e solução sob medida antes, durante e depois do fechamento do seguro.
+          - paragraph [ref=f1e235]: Equipe Lobo Seguros
+        - generic [ref=f1e236]:
+          - generic [ref=f1e237]:
+            - paragraph [ref=f1e238]: 24h
+            - paragraph [ref=f1e239]: Assistência durante toda a vigência da apólice.
+          - generic [ref=f1e240]:
+            - paragraph [ref=f1e241]: "6"
+            - paragraph [ref=f1e242]: Ramos atendidos, do auto à fiança locatícia.
+          - generic [ref=f1e243]:
+            - paragraph [ref=f1e244]: 8h30–18h
+            - paragraph [ref=f1e245]: Atendimento de segunda a sexta, inclusive no almoço.
+    - region [ref=f1e246]:
+      - generic [ref=f1e247]:
+        - heading "Por que cotar com a Lobo?" [level=2] [ref=f1e249]
+        - generic [ref=f1e250]:
+          - article [ref=f1e252]:
+            - heading "Pesquisa de mercado" [level=3] [ref=f1e255]
+            - paragraph [ref=f1e256]: Comparamos as maiores seguradoras e mostramos a diferença entre as propostas antes de você decidir.
+          - article [ref=f1e258]:
+            - heading "Assistência 24 horas" [level=3] [ref=f1e261]
+            - paragraph [ref=f1e262]: Dúvida ou sinistro, você tem suporte durante toda a vigência do seguro.
+          - article [ref=f1e264]:
+            - heading "Atendimento direto" [level=3] [ref=f1e267]
+            - paragraph [ref=f1e268]: Você fala com quem resolve, sem fila e sem repasse de protocolo.
+          - article [ref=f1e270]:
+            - heading "Escritório em Taubaté" [level=3] [ref=f1e273]
+            - paragraph [ref=f1e274]: Rua Jacques Felix, 456, no Centro. Atendimento presencial quando você preferir.
+    - region [ref=f1e275]:
+      - generic [ref=f1e276]:
+        - generic [ref=f1e277]:
+          - heading "Quem cota, indica." [level=2] [ref=f1e278]
+          - paragraph [ref=f1e279]: Textos provisórios. A prova social real entra aqui assim que os clientes autorizarem o uso.
+        - generic [ref=f1e280]:
+          - generic [ref=f1e281]:
+            - generic [aria-hidden] [ref=f1e282]: “
+            - generic [ref=f1e283]:
+              - blockquote [ref=f1e284]: “Recebi três propostas comparadas na mesma mensagem e entendi cada cobertura.”
+              - paragraph [ref=f1e285]: Texto provisório | Seguro auto
+          - generic [ref=f1e286]:
+            - generic [ref=f1e287]:
+              - blockquote [ref=f1e288]: “Precisei acionar o seguro e tive resposta no mesmo dia.”
+              - paragraph [ref=f1e289]: Texto provisório | Seguro residencial
+            - generic [ref=f1e290]:
+              - blockquote [ref=f1e291]: “Resolveram a fiança do aluguel sem fiador e sem burocracia.”
+              - paragraph [ref=f1e292]: Texto provisório | Fiança locatícia
+    - region [ref=f1e293]:
+      - generic [ref=f1e294]:
+        - generic [ref=f1e295]:
+          - heading "Cotação sem compromisso." [level=2] [ref=f1e296]
+          - paragraph [ref=f1e297]: Manda o que você quer proteger no WhatsApp. A gente pesquisa o mercado e volta com as opções comparadas.
+          - link "Pedir cotação" [ref=f1e299] [cursor=pointer]:
+            - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro.
+        - list [ref=f1e304]:
+          - listitem [ref=f1e305]:
+            - link "(12) 3622-2860" [ref=f1e308] [cursor=pointer]:
+              - /url: tel:+551236222860
+          - listitem [ref=f1e309]:
+            - link "(12) 98179-7300" [ref=f1e312] [cursor=pointer]:
+              - /url: tel:+5512981797300
+          - listitem [ref=f1e313]:
+            - link "(12) 97600-1191" [ref=f1e316] [cursor=pointer]:
+              - /url: tel:+5512976001191
+          - listitem [ref=f1e317]:
+            - link "rodrigo@loboseguros.com.br" [ref=f1e320] [cursor=pointer]:
+              - /url: mailto:rodrigo@loboseguros.com.br
+          - listitem [ref=f1e321]:
+            - generic [ref=f1e324]: Rua Jacques Felix, 456 — Centro, Taubaté-SP
+          - listitem [ref=f1e325]:
+            - generic [ref=f1e328]: Segunda a sexta, das 8h30 às 18h. Sem pausa no almoço.
+  - contentinfo "Rodapé" [ref=f1e329]:
+    - generic [ref=f1e330]:
+      - generic [ref=f1e331]:
+        - generic [ref=f1e332]:
+          - img "LOBO CORRETORA® SEGUROS" [ref=f1e333]
+          - paragraph [ref=f1e334]: Corretora de seguros em Taubaté-SP. Confiança e preço justo na mesma conversa.
+        - generic [ref=f1e335]:
+          - paragraph [ref=f1e336]: Contato
+          - link "WhatsApp" [ref=f1e337] [cursor=pointer]:
+            - /url: https://wa.me/5512981797300?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20uma%20cota%C3%A7%C3%A3o%20de%20seguro.
+          - link "E-mail" [ref=f1e340] [cursor=pointer]:
+            - /url: mailto:rodrigo@loboseguros.com.br
+        - generic [ref=f1e343]:
+          - paragraph [ref=f1e344]: Escritório
+          - paragraph [ref=f1e345]: Rua Jacques Felix, 456 — Centro, Taubaté-SP
+          - link "@loboseguross" [ref=f1e346] [cursor=pointer]:
+            - /url: https://www.instagram.com/loboseguross/
+      - generic [ref=f1e349]:
+        - generic [ref=f1e350]: Rodrigo Lobo
+        - generic [ref=f1e351]: LOBO CORRETORA® SEGUROS
