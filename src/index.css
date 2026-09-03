@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: 280px;
   margin: 0;
   background: #111318;
 }
@@ -148,6 +148,32 @@ a {
 
 .product-card:hover::before {
   width: 100%;
+}
+
+.mobile-product {
+  border: 1px solid rgb(var(--color-ink) / 0.14);
+  background: rgb(var(--color-paper-deep) / 0.42);
+}
+
+.mobile-product[open] {
+  border-color: rgb(var(--color-ink) / 0.28);
+  background: rgb(var(--color-paper-deep) / 0.72);
+}
+
+.mobile-product summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-product-caret {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-product[open] .mobile-product-caret {
+  transform: rotate(180deg);
+}
+
+.sticky-whatsapp {
+  bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
 .insurer-mark {

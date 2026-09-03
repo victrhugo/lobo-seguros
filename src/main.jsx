@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { motion, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowUpRight,
   Buildings,
+  CaretDown,
   Car,
   Check,
   Clock,
@@ -131,7 +132,7 @@ function Header({ content }) {
       <div className="mx-auto flex h-[76px] max-w-[1400px] items-center justify-between px-5 lg:px-10">
         <a
           href="#topo"
-          className="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="flex min-h-11 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           aria-label={`${content.brand.fullName}, voltar ao início`}
         >
           <img
@@ -153,7 +154,7 @@ function Header({ content }) {
 
         <a
           href={whatsappLink(content.contact.whatsapp, content.hero.message)}
-          className="inline-flex min-h-10 items-center gap-2 border border-accent bg-accent px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-paper transition-colors hover:bg-accentDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:px-4"
+          className="inline-flex min-h-11 items-center gap-2 border border-accent bg-accent px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-paper transition-colors hover:bg-accentDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:px-4"
         >
           <WhatsappLogo size={16} weight="bold" aria-hidden="true" />
           <span className="hidden sm:inline">{content.hero.primaryCta}</span>
@@ -189,7 +190,7 @@ function Hero({ content }) {
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100svh-76px)] max-w-[1600px] items-end px-4 pb-4 pt-24 sm:px-8 sm:pb-8 lg:px-10 lg:pb-10 xl:px-20">
         <motion.div
-          className="hero-copy w-full max-w-[43rem] px-6 pb-20 pt-6 sm:p-8 lg:p-10"
+          className="hero-copy w-full max-w-[43rem] px-6 pb-24 pt-6 sm:p-8 lg:p-10"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.18, ease: revealEase }}
@@ -198,7 +199,7 @@ function Hero({ content }) {
             <span className="h-px w-8 shrink-0 bg-accent" aria-hidden="true" />
             {content.hero.eyebrow}
           </p>
-          <h1 className="text-balance font-display text-[clamp(3.1rem,7vw,5.8rem)] font-extrabold leading-[0.87] tracking-[-0.055em]">
+          <h1 className="text-balance font-display text-[clamp(2.75rem,12.7vw,5.8rem)] font-extrabold leading-[0.87] tracking-[-0.055em]">
             {content.hero.titleLines.map((line, index) => (
               <span key={`${line}-${index}`} className={`block ${index === 1 ? "text-accent" : ""}`}>
                 {line}
@@ -251,6 +252,7 @@ function Insurers({ content }) {
 function Products({ content }) {
   const { items } = content.products;
   const reduce = useReducedMotion();
+  const [activeMobileProduct, setActiveMobileProduct] = useState(0);
 
   return (
     <section id="seguros" className="scroll-mt-20 bg-paper text-ink" aria-labelledby="seguros-title">
@@ -262,7 +264,55 @@ function Products({ content }) {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 space-y-2 md:hidden">
+          {items.map((product, index) => {
+            const Icon = productIcons[product.icon] || ShieldCheck;
+
+            return (
+              <details
+                key={product.title}
+                className="mobile-product"
+                open={activeMobileProduct === index}
+                onToggle={({ currentTarget }) => {
+                  if (currentTarget.open) setActiveMobileProduct(index);
+                  else if (activeMobileProduct === index) setActiveMobileProduct(null);
+                }}
+              >
+                <summary className="flex min-h-20 cursor-pointer list-none items-center gap-4 px-5 py-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                  <Icon size={28} weight="light" className="shrink-0 text-accent" aria-hidden="true" />
+                  <span className="min-w-0 flex-1 font-display text-xl font-bold leading-tight tracking-tight">
+                    {product.title}
+                  </span>
+                  <span className="text-[0.58rem] font-bold tracking-[0.16em] text-ink/35">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <CaretDown className="mobile-product-caret shrink-0 text-ink/55" size={18} weight="bold" aria-hidden="true" />
+                </summary>
+                <div className="border-t border-ink/12 px-5 pb-6 pt-5">
+                  <p className="text-sm leading-relaxed text-ink/68">{product.description}</p>
+                  <ul className="mt-5 grid grid-cols-1 gap-2 border-t border-ink/12 pt-5 text-sm text-ink/72">
+                    {product.items.map((item) => (
+                      <li key={item} className="flex items-center gap-2">
+                        <Check size={15} weight="bold" className="shrink-0 text-accent" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <motion.a
+                    href={whatsappLink(content.contact.whatsapp, product.message)}
+                    className="mt-6 inline-flex min-h-11 items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {content.products.ctaLabel}
+                    <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+                  </motion.a>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+
+        <div className="mt-14 hidden grid-cols-1 gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">
           {items.map((product, index) => {
             const Icon = productIcons[product.icon] || ShieldCheck;
             const featured = Boolean(product.featured);
@@ -594,7 +644,7 @@ function StickyWhatsApp({ content }) {
   return (
     <a
       href={whatsappLink(content.contact.whatsapp, content.finalCta.message)}
-      className="fixed bottom-4 left-4 right-4 z-20 flex min-h-14 items-center justify-center gap-3 bg-accent px-5 py-4 text-sm font-bold uppercase tracking-[0.15em] text-paper shadow-card transition-colors hover:bg-accentDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent md:hidden"
+      className="sticky-whatsapp fixed left-4 right-4 z-20 flex min-h-14 items-center justify-center gap-3 bg-accent px-5 py-4 text-sm font-bold uppercase tracking-[0.15em] text-paper shadow-card transition-colors hover:bg-accentDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent md:hidden"
       aria-label="Pedir cotação no WhatsApp"
     >
       <WhatsappLogo size={20} weight="bold" aria-hidden="true" />
