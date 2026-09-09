@@ -641,6 +641,18 @@ function Footer({ content }) {
 }
 
 function StickyWhatsApp({ content }) {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById('topo');
+    if (!hero) return undefined;
+    const observer = new IntersectionObserver(([entry]) => setShow(!entry.isIntersecting));
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
+  if (!show) return null;
+
   return (
     <a
       href={whatsappLink(content.contact.whatsapp, content.finalCta.message)}
@@ -672,7 +684,7 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-ink" style={themeStyle}>
+    <div className="landing min-h-screen overflow-x-hidden bg-ink" style={themeStyle}>
       <a className="skip-link" href="#conteudo">
         Pular para o conteúdo
       </a>

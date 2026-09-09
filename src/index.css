@@ -226,6 +226,118 @@ a {
   }
 }
 
+/* Calm, readable presentation scoped to the public site. */
+.landing h1,
+.landing h2,
+.landing h3 {
+  text-wrap: balance;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.landing h2 { font-size: clamp(2rem, 3.6vw, 3.25rem); }
+.landing h3 { font-size: clamp(1.35rem, 2.2vw, 1.8rem); }
+.landing p { text-wrap: pretty; }
+.landing a:focus-visible,
+.landing summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+.landing a { touch-action: manipulation; }
+.landing .nav-link,
+.landing .footer-link {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.landing a.bg-accent,
+.landing a.bg-ink {
+  border-radius: 8px;
+  text-transform: none;
+  letter-spacing: 0.015em;
+  font-size: 0.875rem;
+}
+.landing .hero-section::before { display: none; }
+.landing .hero-copy {
+  max-width: 35rem;
+  border: 0;
+  border-radius: 16px;
+  background: rgb(var(--color-ink) / 0.88);
+  box-shadow: none;
+}
+.landing .hero-copy h1 { font-size: clamp(2.25rem, 4.5vw, 3.75rem); }
+.landing .hero-copy h1 span { color: rgb(var(--color-paper)); }
+.landing .hero-copy p:last-of-type { font-size: 1rem; line-height: 1.65; }
+.landing #seguradoras {
+  background: rgb(var(--color-paper));
+  color: rgb(var(--color-ink));
+  border-color: rgb(var(--color-ink) / 0.1);
+}
+.landing #seguradoras > div { padding-block: 2.75rem; }
+.landing #seguradoras p { color: rgb(var(--color-ink) / 0.7); }
+.landing #seguradoras h2 { font-size: 1.4rem; }
+.landing .insurer-mark {
+  border: 0;
+  border-bottom: 1px solid rgb(var(--color-ink) / 0.12);
+  min-height: 48px;
+  color: rgb(var(--color-ink) / 0.8);
+  letter-spacing: 0;
+}
+.landing .product-card,
+.landing .mobile-product {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.landing .product-card::before { display: none; }
+.landing .product-card:hover { box-shadow: 0 8px 24px rgb(var(--color-ink) / 0.06); }
+.landing .product-card { background: rgb(var(--color-paper)); }
+.landing .product-card.bg-ink { background: rgb(var(--color-ink)); }
+.landing #diferenciais {
+  background: rgb(var(--color-paper));
+  color: rgb(var(--color-ink));
+}
+.landing #diferenciais p { color: rgb(var(--color-ink) / 0.72); }
+.landing #diferenciais article,
+.landing #diferenciais > div > div { border-color: rgb(var(--color-ink) / 0.12); }
+.landing #contato { background: rgb(var(--color-ink-soft)); }
+.landing #contato a.bg-ink { background: rgb(var(--color-accent)); border-color: transparent; }
+.landing #contato li a { min-height: 44px; display: inline-flex; align-items: center; overflow-wrap: anywhere; }
+.landing footer p { color: rgb(var(--color-paper) / 0.72); }
+.landing footer { border-top: 1px solid rgb(var(--color-paper) / 0.12); }
+
+@media (max-width: 767px) {
+  .landing #topo { min-height: auto; }
+  .landing .hero-cover { position: relative; inset: auto; height: clamp(250px, 76vw, 380px); }
+  .landing .hero-cover img { object-position: 72% center; }
+  .landing #topo > div:last-child {
+    min-height: auto;
+    padding: 0;
+  }
+  .landing .hero-copy { max-width: none; border-radius: 0; padding: 28px 24px 36px; background: rgb(var(--color-ink)); }
+  .landing .hero-copy h1 { font-size: clamp(2rem, 8.5vw, 2.8rem); }
+  .landing .hero-copy > p:first-child { letter-spacing: 0.1em; font-size: 0.625rem; margin-bottom: 16px; }
+  .landing .hero-copy > div { display: block; }
+  .landing main > section:not(#topo) > div { padding-block: 48px; }
+  .landing #seguradoras > div { padding-block: 32px; }
+  .landing #seguros p,
+  .landing #diferenciais p { font-size: 1rem; line-height: 1.65; }
+  .landing #empresa > div { gap: 32px; }
+  .landing #empresa p.text-lg { font-size: 1rem; }
+  .landing .stat-block { min-height: auto; padding-block: 20px; }
+  .landing .stat-block p:last-child { max-width: 100%; }
+  .landing #diferenciais > div > div:last-child { gap: 0; margin-top: 24px; }
+  .landing #diferenciais article { padding-block: 24px; }
+  .landing #diferenciais h3 { margin-top: 16px; }
+  .landing #diferenciais article p { max-width: 100%; }
+  .landing footer { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .landing { scroll-padding-bottom: 96px; }
+  html { scroll-padding-bottom: 96px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
