@@ -62,6 +62,10 @@ export const defaultSiteContent = {
       "SulAmérica",
       "Chubb",
     ],
+    groups: [
+      { label: "Grupo Porto", items: ["Porto Seguros", "Azul Seguros", "Itaú Seguros"] },
+      { label: "Grupo Yelum", items: ["Yelum Seguradora", "Aliro Seguro"] },
+    ],
     note: "Também trabalhamos com consórcio Porto e Carro Fácil.",
   },
   products: {

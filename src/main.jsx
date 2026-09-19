@@ -231,13 +231,39 @@ function Insurers({ content }) {
           <p className="mt-3 text-sm leading-relaxed text-paper/60">{content.insurers.description}</p>
         </Reveal>
 
-        <Reveal className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7" delay={0.1}>
-          {content.insurers.items.map((name) => (
-            <span key={name} className="insurer-mark">
-              {name}
-            </span>
+        <div className="mt-10 space-y-10">
+          {content.insurers.groups?.map((group, groupIndex) => (
+            <Reveal key={group.label} className="insurer-group" delay={0.1 + groupIndex * 0.06}>
+              <div className="insurer-group-heading">
+                <span className="insurer-group-kicker">Parceiras</span>
+                <h3>{group.label}</h3>
+              </div>
+              <div className="insurer-group-list">
+                {group.items.filter((name) => content.insurers.items.includes(name)).map((name) => (
+                  <span key={name} className="insurer-mark">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
           ))}
-        </Reveal>
+
+          <Reveal className="insurer-group" delay={0.22}>
+            <div className="insurer-group-heading">
+              <span className="insurer-group-kicker">Mercado</span>
+              <h3>Outras parceiras</h3>
+            </div>
+            <div className="insurer-group-list">
+              {content.insurers.items
+                .filter((name) => !content.insurers.groups?.some((group) => group.items.includes(name)))
+                .map((name) => (
+                  <span key={name} className="insurer-mark">
+                    {name}
+                  </span>
+                ))}
+            </div>
+          </Reveal>
+        </div>
 
         {content.insurers.note && (
           <p className="mt-6 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-paper/40">
