@@ -11,8 +11,8 @@ export const defaultSiteContent = {
   contact: {
     whatsapp: "https://wa.me/5512981797300",
     whatsappLabel: "(12) 98179-7300",
-    whatsappTalita: "https://wa.me/5512974012733",
-    whatsappTalitaLabel: "(12) 97401-2733",
+    whatsappThalyta: "https://wa.me/5512974012733",
+    whatsappThalytaLabel: "(12) 97401-2733",
     email: "rodrigo@loboseguros.com.br",
     instagram: "https://www.instagram.com/loboseguross/",
     instagramLabel: "@loboseguross",
@@ -230,7 +230,7 @@ export function validateSiteContent(value) {
   const merged = mergeWithDefaults(defaultSiteContent, value);
   if (!merged.seo.title.trim()) throw new Error("O título de SEO não pode ficar vazio.");
   if (!merged.contact.whatsapp.startsWith("https://")) throw new Error("O WhatsApp precisa ser uma URL HTTPS.");
-  if (!merged.contact.whatsappTalita.startsWith("https://")) throw new Error("O WhatsApp da Talita precisa ser uma URL HTTPS.");
+  if (!merged.contact.whatsappThalyta.startsWith("https://")) throw new Error("O WhatsApp da Thalyta precisa ser uma URL HTTPS.");
   if (!merged.contact.instagram.startsWith("https://")) throw new Error("O Instagram precisa ser uma URL HTTPS.");
   if (!Number.isFinite(Number(merged.about.years)) || Number(merged.about.years) < 0) throw new Error("Anos de mercado precisa ser um número válido.");
   if (!merged.products.items.length) throw new Error("Cadastre pelo menos um seguro.");

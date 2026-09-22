@@ -316,8 +316,8 @@ function AdminPage() {
             <Field label="Responsável" value={content.brand.person} onChange={(value) => update("brand.person", value)} />
             <Field label="WhatsApp do Rodrigo" type="url" hint="Formato https://wa.me/55DDDNÚMERO" value={content.contact.whatsapp} onChange={(value) => update("contact.whatsapp", value)} />
             <Field label="Número do Rodrigo" value={content.contact.whatsappLabel} onChange={(value) => update("contact.whatsappLabel", value)} />
-            <Field label="WhatsApp da Talita" type="url" hint="Formato https://wa.me/55DDDNÚMERO" value={content.contact.whatsappTalita} onChange={(value) => update("contact.whatsappTalita", value)} />
-            <Field label="Número da Talita" value={content.contact.whatsappTalitaLabel} onChange={(value) => update("contact.whatsappTalitaLabel", value)} />
+            <Field label="WhatsApp da Thalyta" type="url" hint="Formato https://wa.me/55DDDNÚMERO" value={content.contact.whatsappThalyta} onChange={(value) => update("contact.whatsappThalyta", value)} />
+            <Field label="Número da Thalyta" value={content.contact.whatsappThalytaLabel} onChange={(value) => update("contact.whatsappThalytaLabel", value)} />
             <Field label="E-mail" type="email" value={content.contact.email} onChange={(value) => update("contact.email", value)} />
             <Field label="Instagram" type="url" value={content.contact.instagram} onChange={(value) => update("contact.instagram", value)} />
             <Field label="Usuário do Instagram" value={content.contact.instagramLabel} onChange={(value) => update("contact.instagramLabel", value)} />

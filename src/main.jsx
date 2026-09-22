@@ -35,10 +35,10 @@ const whatsappLink = (base, message) =>
 
 const contactOptions = (content) => [
   {
-    name: "Operadora Talita",
+    name: "Operadora Thalyta",
     role: "Departamento de Seguros",
-    phone: content.contact.whatsappTalitaLabel,
-    whatsapp: content.contact.whatsappTalita,
+    phone: content.contact.whatsappThalytaLabel,
+    whatsapp: content.contact.whatsappThalyta,
   },
   {
     name: "Rodrigo Lobo",
