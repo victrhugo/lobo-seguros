@@ -21,6 +21,7 @@ import {
   Phone,
   ShieldCheck,
   WhatsappLogo,
+  X,
 } from "@phosphor-icons/react";
 import "./index.css";
 import { hexToRgbChannels, useSiteContent } from "./siteContent";
@@ -31,6 +32,21 @@ const AdminPage = React.lazy(() => import("./Admin"));
 
 const whatsappLink = (base, message) =>
   message ? `${base}?text=${encodeURIComponent(message)}` : base;
+
+const contactOptions = (content) => [
+  {
+    name: "Operadora Talita",
+    role: "Departamento de Seguros",
+    phone: content.contact.whatsappTalitaLabel,
+    whatsapp: content.contact.whatsappTalita,
+  },
+  {
+    name: "Rodrigo Lobo",
+    role: "Corretor responsável",
+    phone: content.contact.whatsappLabel,
+    whatsapp: content.contact.whatsapp,
+  },
+];
 
 const revealEase = [0.16, 1, 0.3, 1];
 
@@ -66,16 +82,20 @@ function Reveal({ children, className = "", delay = 0, amount = 0.2 }) {
   );
 }
 
-function ArrowLink({ href, children, tone = "accent", external = false }) {
+function ArrowLink({ href, onClick, children, tone = "accent", external = false }) {
   const tones = {
     accent: "border-accent bg-accent text-paper hover:bg-accentDark",
     ink: "border-ink bg-ink text-paper hover:bg-accent",
     outline: "border-paper/35 text-paper hover:border-accent hover:bg-accent",
   };
 
+  const Component = onClick ? motion.button : motion.a;
+
   return (
-    <motion.a
-      href={href}
+    <Component
+      href={onClick ? undefined : href}
+      type={onClick ? "button" : undefined}
+      onClick={onClick}
       className={`inline-flex min-h-12 items-center gap-3 border px-5 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${tones[tone]}`}
       whileHover={{ x: 4 }}
       whileTap={{ scale: 0.98 }}
@@ -84,7 +104,7 @@ function ArrowLink({ href, children, tone = "accent", external = false }) {
     >
       <span>{children}</span>
       <ArrowUpRight size={17} weight="bold" aria-hidden="true" />
-    </motion.a>
+    </Component>
   );
 }
 
@@ -126,7 +146,7 @@ function SectionTitle({ children, className = "", id }) {
   );
 }
 
-function Header({ content }) {
+function Header({ content, onQuote }) {
   return (
     <header className="site-header fixed inset-x-0 top-0 z-30 border-b border-paper/10">
       <div className="mx-auto flex h-[76px] max-w-[1400px] items-center justify-between px-5 lg:px-10">
@@ -152,20 +172,21 @@ function Header({ content }) {
           ))}
         </nav>
 
-        <a
-          href={whatsappLink(content.contact.whatsapp, content.hero.message)}
+        <button
+          type="button"
+          onClick={() => onQuote(content.hero.message)}
           className="inline-flex min-h-11 items-center gap-2 border border-accent bg-accent px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-paper transition-colors hover:bg-accentDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:px-4"
         >
           <WhatsappLogo size={16} weight="bold" aria-hidden="true" />
           <span className="hidden sm:inline">{content.hero.primaryCta}</span>
           <span className="sm:hidden">WhatsApp</span>
-        </a>
+        </button>
       </div>
     </header>
   );
 }
 
-function Hero({ content }) {
+function Hero({ content, onQuote }) {
   const reduce = useReducedMotion();
 
   return (
@@ -210,7 +231,7 @@ function Hero({ content }) {
             {content.hero.description}
           </p>
           <div className="mt-7 hidden sm:block">
-            <ArrowLink href={whatsappLink(content.contact.whatsapp, content.hero.message)}>
+            <ArrowLink onClick={() => onQuote(content.hero.message)}>
               {content.hero.primaryCta}
             </ArrowLink>
           </div>
@@ -221,6 +242,15 @@ function Hero({ content }) {
 }
 
 function Insurers({ content }) {
+  const groups = (content.insurers.groups || [])
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((name) => content.insurers.items.includes(name)),
+    }))
+    .filter((group) => group.items.length);
+  const groupedInsurers = new Set(groups.flatMap((group) => group.items));
+  const otherInsurers = content.insurers.items.filter((name) => !groupedInsurers.has(name));
+
   return (
     <section id="seguradoras" className="scroll-mt-20 border-y border-paper/10 bg-inkSoft text-paper">
       <div className="mx-auto max-w-[1400px] px-5 py-16 lg:px-10 lg:py-20">
@@ -231,38 +261,46 @@ function Insurers({ content }) {
           <p className="mt-3 text-sm leading-relaxed text-paper/60">{content.insurers.description}</p>
         </Reveal>
 
-        <div className="mt-10 space-y-10">
-          {content.insurers.groups?.map((group, groupIndex) => (
-            <Reveal key={group.label} className="insurer-group" delay={0.1 + groupIndex * 0.06}>
+        <div className="insurer-groups-grid mt-10">
+          {groups.map((group, groupIndex) => (
+            <Reveal key={group.label} className="insurer-group insurer-group--corporate" delay={0.1 + groupIndex * 0.06}>
               <div className="insurer-group-heading">
-                <span className="insurer-group-kicker">Parceiras</span>
-                <h3>{group.label}</h3>
+                <div>
+                  <span className="insurer-group-kicker">Grupo empresarial</span>
+                  <h3>{group.label}</h3>
+                </div>
+                <span className="insurer-group-count" aria-label={`${group.items.length} seguradoras`}>
+                  {String(group.items.length).padStart(2, "0")}
+                </span>
               </div>
-              <div className="insurer-group-list">
-                {group.items.filter((name) => content.insurers.items.includes(name)).map((name) => (
-                  <span key={name} className="insurer-mark">
+              <ul className="insurer-group-list">
+                {group.items.map((name) => (
+                  <li key={name} className="insurer-mark">
                     {name}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </Reveal>
           ))}
 
-          <Reveal className="insurer-group" delay={0.22}>
+          {otherInsurers.length > 0 && <Reveal className="insurer-group insurer-group--market" delay={0.22}>
             <div className="insurer-group-heading">
-              <span className="insurer-group-kicker">Mercado</span>
-              <h3>Outras parceiras</h3>
+              <div>
+                <span className="insurer-group-kicker">Independentes</span>
+                <h3>Outras parceiras</h3>
+              </div>
+              <span className="insurer-group-count" aria-label={`${otherInsurers.length} seguradoras`}>
+                {String(otherInsurers.length).padStart(2, "0")}
+              </span>
             </div>
-            <div className="insurer-group-list">
-              {content.insurers.items
-                .filter((name) => !content.insurers.groups?.some((group) => group.items.includes(name)))
-                .map((name) => (
-                  <span key={name} className="insurer-mark">
-                    {name}
-                  </span>
-                ))}
-            </div>
-          </Reveal>
+            <ul className="insurer-group-list">
+              {otherInsurers.map((name) => (
+                <li key={name} className="insurer-mark">
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </Reveal>}
         </div>
 
         {content.insurers.note && (
@@ -275,7 +313,7 @@ function Insurers({ content }) {
   );
 }
 
-function Products({ content }) {
+function Products({ content, onQuote }) {
   const { items } = content.products;
   const reduce = useReducedMotion();
   const [activeMobileProduct, setActiveMobileProduct] = useState(0);
@@ -324,14 +362,15 @@ function Products({ content }) {
                       </li>
                     ))}
                   </ul>
-                  <motion.a
-                    href={whatsappLink(content.contact.whatsapp, product.message)}
+                  <motion.button
+                    type="button"
+                    onClick={() => onQuote(product.message)}
                     className="mt-6 inline-flex min-h-11 items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                     whileTap={{ scale: 0.98 }}
                   >
                     {content.products.ctaLabel}
                     <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
-                  </motion.a>
+                  </motion.button>
                 </div>
               </details>
             );
@@ -401,8 +440,9 @@ function Products({ content }) {
                   </div>
 
                   <div className="mt-8">
-                    <motion.a
-                      href={whatsappLink(content.contact.whatsapp, product.message)}
+                    <motion.button
+                      type="button"
+                      onClick={() => onQuote(product.message)}
                       className={`inline-flex min-h-11 items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${
                         featured ? "text-paper" : "text-ink"
                       }`}
@@ -411,7 +451,7 @@ function Products({ content }) {
                     >
                       {content.products.ctaLabel}
                       <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
-                    </motion.a>
+                    </motion.button>
                   </div>
                 </motion.article>
               </Reveal>
@@ -557,7 +597,7 @@ function Testimonials({ content }) {
   );
 }
 
-function FinalCta({ content }) {
+function FinalCta({ content, onQuote }) {
   return (
     <section id="contato" className="scroll-mt-20 bg-accent text-paper" aria-labelledby="cta-title">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 py-20 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:px-10 lg:py-24">
@@ -569,7 +609,7 @@ function FinalCta({ content }) {
             {content.finalCta.description}
           </p>
           <div className="mt-9">
-            <ArrowLink href={whatsappLink(content.contact.whatsapp, content.finalCta.message)} tone="ink">
+            <ArrowLink onClick={() => onQuote(content.finalCta.message)} tone="ink">
               {content.finalCta.button}
             </ArrowLink>
           </div>
@@ -577,12 +617,16 @@ function FinalCta({ content }) {
 
         <Reveal delay={0.12}>
           <ul className="space-y-4 border-t border-paper/30 pt-8 text-sm">
-            {content.contact.phones.map((phone) => (
-              <li key={phone} className="flex items-center gap-3">
+            {contactOptions(content).map((contact) => (
+              <li key={contact.name} className="flex items-start gap-3">
                 <Phone size={17} weight="bold" aria-hidden="true" />
-                <a className="hover:underline" href={`tel:+55${phone.replace(/\D/g, "")}`}>
-                  {phone}
-                </a>
+                <span>
+                  <span className="block font-semibold">{contact.name}</span>
+                  <span className="block text-xs text-paper/65">{contact.role}</span>
+                  <a className="mt-1 inline-block hover:underline" href={`tel:+55${contact.phone.replace(/\D/g, "")}`}>
+                    {contact.phone}
+                  </a>
+                </span>
               </li>
             ))}
             <li className="flex items-center gap-3">
@@ -606,7 +650,7 @@ function FinalCta({ content }) {
   );
 }
 
-function Footer({ content }) {
+function Footer({ content, onQuote }) {
   return (
     <footer className="bg-ink pb-24 text-paper md:pb-0" aria-label="Rodapé">
       <div className="mx-auto max-w-[1400px] px-5 py-14 lg:px-10">
@@ -626,12 +670,13 @@ function Footer({ content }) {
             <p className="text-[0.66rem] font-bold uppercase tracking-[0.18em] text-paper/42">
               {content.footer.contactTitle}
             </p>
-            <a
+            <button
+              type="button"
+              onClick={() => onQuote(content.finalCta.message)}
               className="footer-link mt-4 inline-flex items-center gap-2"
-              href={whatsappLink(content.contact.whatsapp, content.finalCta.message)}
             >
               <WhatsappLogo size={17} weight="bold" aria-hidden="true" /> WhatsApp
-            </a>
+            </button>
             <a className="footer-link mt-3 flex items-center gap-2" href={`mailto:${content.contact.email}`}>
               <EnvelopeSimple size={17} weight="bold" aria-hidden="true" /> E-mail
             </a>
@@ -666,7 +711,7 @@ function Footer({ content }) {
   );
 }
 
-function StickyWhatsApp({ content }) {
+function StickyWhatsApp({ content, onQuote }) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -680,19 +725,102 @@ function StickyWhatsApp({ content }) {
   if (!show) return null;
 
   return (
-    <a
-      href={whatsappLink(content.contact.whatsapp, content.finalCta.message)}
+    <button
+      type="button"
+      onClick={() => onQuote(content.finalCta.message)}
       className="sticky-whatsapp fixed left-4 right-4 z-20 flex min-h-14 items-center justify-center gap-3 bg-accent px-5 py-4 text-sm font-bold uppercase tracking-[0.15em] text-paper shadow-card transition-colors hover:bg-accentDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent md:hidden"
       aria-label="Pedir cotação no WhatsApp"
     >
       <WhatsappLogo size={20} weight="bold" aria-hidden="true" />
       {content.finalCta.button}
-    </a>
+    </button>
+  );
+}
+
+function ContactChooser({ content, request, onClose }) {
+  const dialogRef = useRef(null);
+  const firstOptionRef = useRef(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return undefined;
+
+    if (request && !dialog.open) {
+      dialog.showModal();
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => firstOptionRef.current?.focus());
+    } else if (!request && dialog.open) {
+      dialog.close();
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [request]);
+
+  const close = () => {
+    document.body.style.overflow = "";
+    onClose();
+  };
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="contact-dialog"
+      aria-labelledby="contact-dialog-title"
+      aria-describedby="contact-dialog-description"
+      onCancel={(event) => {
+        event.preventDefault();
+        close();
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) close();
+      }}
+    >
+      <div className="contact-dialog-panel">
+        <button
+          type="button"
+          className="contact-dialog-close"
+          aria-label="Fechar escolha de atendimento"
+          onClick={close}
+        >
+          <X size={20} weight="bold" aria-hidden="true" />
+        </button>
+        <p className="contact-dialog-kicker">Atendimento pelo WhatsApp</p>
+        <h2 id="contact-dialog-title" className="contact-dialog-title">Com quem você quer falar?</h2>
+        <p id="contact-dialog-description" className="contact-dialog-description">
+          Escolha um responsável para continuar sua cotação.
+        </p>
+        <div className="contact-dialog-options">
+          {contactOptions(content).map((contact, index) => (
+            <a
+              key={contact.name}
+              ref={index === 0 ? firstOptionRef : undefined}
+              className="contact-option"
+              href={whatsappLink(contact.whatsapp, request?.message)}
+              onClick={close}
+            >
+              <span className="contact-option-icon" aria-hidden="true">
+                <WhatsappLogo size={22} weight="bold" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <strong className="contact-option-name">{contact.name}</strong>
+                <span className="contact-option-role">{contact.role}</span>
+                <span className="contact-option-phone">{contact.phone}</span>
+              </span>
+              <ArrowUpRight size={19} weight="bold" className="shrink-0" aria-hidden="true" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </dialog>
   );
 }
 
 function App() {
   const content = useSiteContent();
+  const [quoteRequest, setQuoteRequest] = useState(null);
+  const quoteTriggerRef = useRef(null);
   const hasPublishedTestimonials = content.testimonials.items.some(
     (item) => item.author.trim().toLowerCase() !== "texto provisório",
   );
@@ -709,23 +837,34 @@ function App() {
     ]),
   );
 
+  const openQuote = (message) => {
+    quoteTriggerRef.current = document.activeElement;
+    setQuoteRequest({ message });
+  };
+
+  const closeQuote = () => {
+    setQuoteRequest(null);
+    requestAnimationFrame(() => quoteTriggerRef.current?.focus());
+  };
+
   return (
     <div className="landing min-h-screen overflow-x-hidden bg-ink" style={themeStyle}>
       <a className="skip-link" href="#conteudo">
         Pular para o conteúdo
       </a>
-      <Header content={content} />
+      <Header content={content} onQuote={openQuote} />
       <main id="conteudo">
-        <Hero content={content} />
+        <Hero content={content} onQuote={openQuote} />
         <Insurers content={content} />
-        <Products content={content} />
+        <Products content={content} onQuote={openQuote} />
         <About content={content} />
         <Differences content={content} />
         {hasPublishedTestimonials && <Testimonials content={content} />}
-        <FinalCta content={content} />
+        <FinalCta content={content} onQuote={openQuote} />
       </main>
-      <Footer content={content} />
-      <StickyWhatsApp content={content} />
+      <Footer content={content} onQuote={openQuote} />
+      <StickyWhatsApp content={content} onQuote={openQuote} />
+      <ContactChooser content={content} request={quoteRequest} onClose={closeQuote} />
     </div>
   );
 }

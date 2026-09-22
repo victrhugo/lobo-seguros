@@ -9,11 +9,10 @@ export const defaultSiteContent = {
       "Corretora de seguros em Taubaté-SP. Auto, residencial, saúde, empresarial, máquinas e fiança locatícia cotados nas maiores seguradoras do país.",
   },
   contact: {
-    // Número principal de conversão. O perfil do Instagram exibe (12) 97401-2733;
-    // confirmar com o Rodrigo qual deve receber os leads do site.
     whatsapp: "https://wa.me/5512981797300",
     whatsappLabel: "(12) 98179-7300",
-    phones: ["(12) 3622-2860", "(12) 98179-7300", "(12) 97600-1191"],
+    whatsappTalita: "https://wa.me/5512974012733",
+    whatsappTalitaLabel: "(12) 97401-2733",
     email: "rodrigo@loboseguros.com.br",
     instagram: "https://www.instagram.com/loboseguross/",
     instagramLabel: "@loboseguross",
@@ -57,14 +56,11 @@ export const defaultSiteContent = {
       "Aliro Seguro",
       "Allianz Brasil",
       "Zurich",
-      "Mapfre",
       "Bradesco Seguros",
-      "SulAmérica",
-      "Chubb",
     ],
     groups: [
       { label: "Grupo Porto", items: ["Porto Seguros", "Azul Seguros", "Itaú Seguros"] },
-      { label: "Grupo Yelum", items: ["Yelum Seguradora", "Aliro Seguro"] },
+      { label: "Grupo HDI", items: ["Yelum Seguradora", "Aliro Seguro"] },
     ],
     note: "Também trabalhamos com consórcio Porto e Carro Fácil.",
   },
@@ -234,6 +230,7 @@ export function validateSiteContent(value) {
   const merged = mergeWithDefaults(defaultSiteContent, value);
   if (!merged.seo.title.trim()) throw new Error("O título de SEO não pode ficar vazio.");
   if (!merged.contact.whatsapp.startsWith("https://")) throw new Error("O WhatsApp precisa ser uma URL HTTPS.");
+  if (!merged.contact.whatsappTalita.startsWith("https://")) throw new Error("O WhatsApp da Talita precisa ser uma URL HTTPS.");
   if (!merged.contact.instagram.startsWith("https://")) throw new Error("O Instagram precisa ser uma URL HTTPS.");
   if (!Number.isFinite(Number(merged.about.years)) || Number(merged.about.years) < 0) throw new Error("Anos de mercado precisa ser um número válido.");
   if (!merged.products.items.length) throw new Error("Cadastre pelo menos um seguro.");

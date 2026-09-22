@@ -314,9 +314,10 @@ function AdminPage() {
             <Field label="Descritor" value={content.brand.descriptor} onChange={(value) => update("brand.descriptor", value)} />
             <Field label="Nome completo" value={content.brand.fullName} onChange={(value) => update("brand.fullName", value)} />
             <Field label="Responsável" value={content.brand.person} onChange={(value) => update("brand.person", value)} />
-            <Field label="Link do WhatsApp" type="url" hint="Formato https://wa.me/55DDDNÚMERO" value={content.contact.whatsapp} onChange={(value) => update("contact.whatsapp", value)} />
-            <Field label="WhatsApp exibido" value={content.contact.whatsappLabel} onChange={(value) => update("contact.whatsappLabel", value)} />
-            <div className="sm:col-span-2"><Field label="Telefones" hint="Um por linha. Aparecem na seção de contato." multiline value={content.contact.phones.join("\n")} onChange={(value) => update("contact.phones", linesToList(value))} /></div>
+            <Field label="WhatsApp do Rodrigo" type="url" hint="Formato https://wa.me/55DDDNÚMERO" value={content.contact.whatsapp} onChange={(value) => update("contact.whatsapp", value)} />
+            <Field label="Número do Rodrigo" value={content.contact.whatsappLabel} onChange={(value) => update("contact.whatsappLabel", value)} />
+            <Field label="WhatsApp da Talita" type="url" hint="Formato https://wa.me/55DDDNÚMERO" value={content.contact.whatsappTalita} onChange={(value) => update("contact.whatsappTalita", value)} />
+            <Field label="Número da Talita" value={content.contact.whatsappTalitaLabel} onChange={(value) => update("contact.whatsappTalitaLabel", value)} />
             <Field label="E-mail" type="email" value={content.contact.email} onChange={(value) => update("contact.email", value)} />
             <Field label="Instagram" type="url" value={content.contact.instagram} onChange={(value) => update("contact.instagram", value)} />
             <Field label="Usuário do Instagram" value={content.contact.instagramLabel} onChange={(value) => update("contact.instagramLabel", value)} />

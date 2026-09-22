@@ -244,6 +244,7 @@ a {
   outline-offset: 5px;
 }
 .landing a { touch-action: manipulation; }
+.landing button { touch-action: manipulation; }
 .landing .nav-link,
 .landing .footer-link {
   text-transform: none;
@@ -280,42 +281,110 @@ a {
 .landing #seguradoras > div { padding-block: 2.75rem; }
 .landing #seguradoras p { color: rgb(var(--color-ink) / 0.7); }
 .landing #seguradoras h2 { font-size: 1.4rem; }
+.landing .insurer-groups-grid {
+  display: grid;
+  gap: 1rem;
+}
 .landing .insurer-group {
-  border-top: 1px solid rgb(var(--color-ink) / 0.16);
-  padding-top: 1.1rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(var(--color-ink) / 0.14);
+  border-radius: 12px;
+  background: rgb(var(--color-paper-deep) / 0.28);
+  padding: 1.25rem;
+}
+.landing .insurer-group::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: rgb(var(--color-accent));
+  content: "";
+}
+.landing .insurer-group--market::before {
+  background: rgb(var(--color-ink) / 0.28);
 }
 .landing .insurer-group-heading {
   display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-  margin-bottom: 0.2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgb(var(--color-ink) / 0.12);
+  padding-bottom: 1rem;
 }
 .landing .insurer-group-kicker {
+  display: block;
+  margin-bottom: 0.35rem;
   color: rgb(var(--color-accent));
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+.landing .insurer-group--market .insurer-group-kicker {
+  color: rgb(var(--color-ink) / 0.48);
+}
 .landing .insurer-group h3 {
-  font-size: 1.05rem;
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
+}
+.landing .insurer-group-count {
+  color: rgb(var(--color-ink) / 0.32);
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 .landing .insurer-group-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 0.75rem;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .landing .insurer-mark {
+  position: relative;
   border: 0;
   border-bottom: 1px solid rgb(var(--color-ink) / 0.12);
-  min-height: 48px;
-  color: rgb(var(--color-ink) / 0.8);
+  min-height: 52px;
+  justify-content: flex-start;
+  padding: 0.75rem 0.25rem 0.75rem 1rem;
+  color: rgb(var(--color-ink) / 0.82);
+  font-size: 0.82rem;
+  font-weight: 600;
   letter-spacing: 0;
+  text-align: left;
 }
-@media (min-width: 1024px) {
-  .landing .insurer-group-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.landing .insurer-mark::before {
+  position: absolute;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgb(var(--color-accent));
+  content: "";
+}
+.landing .insurer-group--market .insurer-mark::before {
+  background: rgb(var(--color-ink) / 0.28);
+}
+.landing .insurer-mark:last-child {
+  border-bottom: 0;
+}
+@media (min-width: 768px) {
+  .landing .insurer-groups-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .landing .insurer-group--market { grid-column: 1 / -1; }
+  .landing .insurer-group--market .insurer-group-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .landing .insurer-group--market .insurer-mark:not(:last-child) { border-right: 1px solid rgb(var(--color-ink) / 0.12); }
+  .landing .insurer-group--market .insurer-mark { border-bottom: 0; padding-left: 1.25rem; }
+}
+@media (min-width: 1100px) {
+  .landing .insurer-groups-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .landing .insurer-group--market { grid-column: auto; }
+  .landing .insurer-group--market .insurer-group-list { grid-template-columns: 1fr; }
+  .landing .insurer-group--market .insurer-mark:not(:last-child) { border-right: 0; }
+  .landing .insurer-group--market .insurer-mark { border-bottom: 1px solid rgb(var(--color-ink) / 0.12); padding-left: 1rem; }
+  .landing .insurer-group--market .insurer-mark:last-child { border-bottom: 0; }
 }
 .landing .product-card,
 .landing .mobile-product {
@@ -338,6 +407,134 @@ a {
 .landing #contato li a { min-height: 44px; display: inline-flex; align-items: center; overflow-wrap: anywhere; }
 .landing footer p { color: rgb(var(--color-paper) / 0.72); }
 .landing footer { border-top: 1px solid rgb(var(--color-paper) / 0.12); }
+
+.contact-dialog {
+  width: min(calc(100% - 2rem), 36rem);
+  max-height: calc(100dvh - 2rem);
+  overflow: visible;
+  border: 0;
+  border-radius: 16px;
+  padding: 0;
+  background: transparent;
+  color: rgb(var(--color-ink));
+}
+.contact-dialog::backdrop {
+  background: rgb(var(--color-ink) / 0.78);
+  backdrop-filter: blur(4px);
+}
+.contact-dialog-panel {
+  position: relative;
+  overflow: auto;
+  max-height: calc(100dvh - 2rem);
+  border-radius: 16px;
+  background: rgb(var(--color-paper));
+  padding: 2rem;
+  box-shadow: 0 28px 80px rgb(var(--color-ink) / 0.32);
+}
+.contact-dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: rgb(var(--color-ink) / 0.58);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.contact-dialog-close:hover {
+  background: rgb(var(--color-paper-deep));
+  color: rgb(var(--color-ink));
+}
+.contact-dialog-kicker {
+  padding-right: 3rem;
+  color: rgb(var(--color-accent));
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.contact-dialog-title {
+  max-width: 26rem;
+  margin-top: 0.75rem;
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.contact-dialog-description {
+  max-width: 25rem;
+  margin-top: 0.9rem;
+  color: rgb(var(--color-ink) / 0.65);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.contact-dialog-options {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.contact-option {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgb(var(--color-ink) / 0.16);
+  border-radius: 12px;
+  padding: 1rem;
+  color: rgb(var(--color-ink));
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+.contact-option:hover {
+  border-color: rgb(var(--color-accent));
+  background: rgb(var(--color-paper-deep) / 0.52);
+}
+.contact-option-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgb(var(--color-accent));
+  color: rgb(var(--color-paper));
+}
+.contact-option-name,
+.contact-option-role,
+.contact-option-phone {
+  display: block;
+}
+.contact-option-name {
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+}
+.contact-option-role {
+  margin-top: 0.15rem;
+  color: rgb(var(--color-ink) / 0.58);
+  font-size: 0.76rem;
+}
+.contact-option-phone {
+  margin-top: 0.35rem;
+  color: rgb(var(--color-accent));
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.contact-dialog button:focus-visible,
+.contact-dialog a:focus-visible {
+  outline: 2px solid rgb(var(--color-accent));
+  outline-offset: 3px;
+}
+
+@media (max-width: 479px) {
+  .contact-dialog { width: min(calc(100% - 1.25rem), 36rem); }
+  .contact-dialog-panel { padding: 1.5rem; }
+  .contact-dialog-options { gap: 0.6rem; }
+  .contact-option { min-height: 88px; padding: 0.85rem; }
+}
 
 @media (max-width: 767px) {
   .landing #topo { min-height: auto; }
