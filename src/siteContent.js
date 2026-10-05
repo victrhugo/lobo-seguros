@@ -16,7 +16,7 @@ export const defaultSiteContent = {
     email: "rodrigo@loboseguros.com.br",
     instagram: "https://www.instagram.com/loboseguross/",
     instagramLabel: "@loboseguross",
-    address: "Rua Jacques Felix, 456 — Centro, Taubaté-SP",
+    address: "Rua Visconde do Rio Branco, 120 — Centro, Taubaté-SP",
     hours: "Segunda a sexta, das 8h30 às 18h. Sem pausa no almoço.",
   },
   brand: {
@@ -161,7 +161,7 @@ export const defaultSiteContent = {
       {
         icon: "map",
         title: "Escritório em Taubaté",
-        text: "Rua Jacques Felix, 456, no Centro. Atendimento presencial quando você preferir.",
+        text: "Rua Visconde do Rio Branco, 120, no Centro. Atendimento presencial quando você preferir.",
       },
     ],
   },
